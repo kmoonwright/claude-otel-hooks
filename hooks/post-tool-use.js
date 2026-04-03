@@ -9,7 +9,7 @@ const raw = await readStdin();
 const exitCode = raw.tool_response?.exit_code ?? 0;
 const toolName = raw.tool_name ?? 'unknown';
 const errorType = exitCode !== 0 ? 'tool.non_zero_exit' : undefined;
-const span = tracer.startSpan(spanNameExecuteTool(toolName),
+const span = tracer.startSpan(spanNameExecuteTool(toolName, raw),
   { kind: SpanKind.INTERNAL, attributes: mergeAttributes(
     { 'claude.event_type': 'PostToolUse',
       'claude.session_id': raw.session_id ?? 'unknown',
