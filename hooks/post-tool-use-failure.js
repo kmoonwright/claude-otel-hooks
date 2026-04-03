@@ -7,7 +7,7 @@ import { spanAttributesInputMessages, inputMessagesFromPostToolFailure } from '.
 
 const raw = await readStdin();
 const toolName = raw.tool_name ?? 'unknown';
-const span = tracer.startSpan(spanNameExecuteTool(toolName),
+const span = tracer.startSpan(spanNameExecuteTool(toolName, raw),
   { kind: SpanKind.INTERNAL, attributes: mergeAttributes(
     { 'claude.event_type': 'PostToolUseFailure',
       'claude.session_id': raw.session_id ?? 'unknown',
