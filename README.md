@@ -1,6 +1,6 @@
 # claude-otel-hooks
 
-OpenTelemetry hooks for [Claude Code](https://claude.ai/code) that send **12 lifecycle events** to [Honeycomb](https://www.honeycomb.io/) as spans. Spans include **[OpenTelemetry GenAI](https://opentelemetry.io/docs/specs/semconv/gen-ai/)** attributes (`gen_ai.*`) where applicable, plus `claude.*` for Claude-specific fields. Prompt and tool **content** are not sent by default—only lengths, names, and metadata. Optional **opt-in** env vars (`CLAUDE_OTEL_RECORD_GEN_AI_MESSAGES`, etc.) can add `gen_ai.input.messages` / `gen_ai.output.messages` (see [README.detailed.md](./README.detailed.md#opentelemetry-genai-conventions)).
+OpenTelemetry hooks for [Claude Code](https://claude.ai/code) that send **12 lifecycle events** to [Honeycomb](https://www.honeycomb.io/) as spans. **Skill invocations** use the built-in `Skill` tool (no extra hook): those spans are named `execute_skill <name>` with `claude.skill_name` / `gen_ai.tool.type=skill` when the payload allows resolving the skill. Spans include **[OpenTelemetry GenAI](https://opentelemetry.io/docs/specs/semconv/gen-ai/)** attributes (`gen_ai.*`) where applicable, plus `claude.*` for Claude-specific fields. Prompt and tool **content** are not sent by default—only lengths, names, and metadata. Optional **opt-in** env vars (`CLAUDE_OTEL_RECORD_GEN_AI_MESSAGES`, etc.) can add `gen_ai.input.messages` / `gen_ai.output.messages` (see [README.detailed.md](./README.detailed.md#opentelemetry-genai-conventions)).
 
 **Full documentation:** [README.detailed.md](./README.detailed.md)
 
